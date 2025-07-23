@@ -144,9 +144,28 @@
     <script src="js/jquery.ajaxchimp.min.js"></script>
     <script src="js/mail-script.js"></script>
     <!--gmaps Js-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
-    <script src="js/gmaps.min.js"></script>
-    <script src="js/theme.js"></script>
+    <script>
+  function initMap() {
+    var map = new google.maps.Map(document.getElementById('mapBox'), {
+      zoom: 13,
+      center: { lat: 11.9218668, lng: 79.5801011 }
+    });
+
+    var marker = new google.maps.Marker({
+      position: { lat: 11.9218668, lng: 79.5801011 },
+      map: map,
+      title: 'Valavanur, Tamil Nadu.'
+    });
+  }
+</script>
+
+<!-- Google Maps with async loading -->
+<script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE&callback=initMap&loading=async"
+  async
+  defer
+></script>
+
 </body>
 
 </html>
