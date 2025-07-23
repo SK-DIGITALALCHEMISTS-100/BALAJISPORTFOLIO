@@ -3298,6 +3298,19 @@ h6 {
       margin-bottom: 0; }
     .footer_area .footer_bottom a {
       color: #854fee; }
+.education_item {
+  margin-bottom: 30px;
+}
+
+.education_item h4 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #2a2a2a;
+}
+
+.education_item p {
+  margin: 5px 0;
+}
 
 /* End Footer Area css
 ============================================================================================ */
