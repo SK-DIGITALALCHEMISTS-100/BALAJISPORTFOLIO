@@ -6,12 +6,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     
     // --- 1. Navbar Scroll Effect ---
-    const nav = document.querySelector('.header_area'); // or .nav-modern depending on markup
+    const nav = document.querySelector('.nav-modern'); 
     if(nav) {
         window.addEventListener('scroll', () => {
             if(window.scrollY > 50) {
                 nav.classList.add('scrolled');
-                nav.classList.add('nav-modern'); // Ensure the class is applied
             } else {
                 nav.classList.remove('scrolled');
             }

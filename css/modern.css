@@ -272,16 +272,58 @@ section {
     left: 0;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+/* Responsive & Mobile Nav Fixes */
+@media (max-width: 991px) {
     section {
         padding: 60px 0;
     }
+    
     .nav-modern {
-        background: var(--bg-main) !important;
+        background: rgba(6, 6, 8, 0.95) !important;
+        backdrop-filter: blur(10px);
         padding: 15px 0;
     }
+    
+    /* Make toggle button highly visible */
+    .navbar-toggler {
+        border-color: rgba(255, 255, 255, 0.1);
+        padding: 8px 12px;
+        background: rgba(255,255,255,0.05);
+        border-radius: var(--radius-sm);
+        cursor: pointer;
+    }
+    
+    .navbar-toggler:focus {
+        outline: none;
+        box-shadow: var(--glow-primary);
+    }
+    
+    /* Style collapsed menu dropdown */
+    .nav-modern .navbar-collapse {
+        background: var(--bg-card);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: var(--radius-md);
+        margin-top: 15px;
+        padding: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    
+    .nav-modern .nav-item {
+        margin: 5px 0 !important;
+        text-align: center;
+    }
+    
+    .nav-modern .nav-link {
+        display: block;
+        padding: 10px 0 !important;
+        font-size: 1.1rem;
+    }
+    
     .grid-modern {
         grid-template-columns: 1fr;
+    }
+    
+    .container-modern {
+        padding: 0 1.5rem;
     }
 }
