@@ -1,0 +1,287 @@
+/* 
+    Modern Portfolio Design System
+    Theme: Deep Dark with Vibrant Accents (Cyan & Purple)
+    Typography: 'Outfit' for Headings, 'Inter' for Body
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    /* Color Palette */
+    --bg-main: #060608;
+    --bg-secondary: #111116;
+    --bg-card: rgba(255, 255, 255, 0.03);
+    
+    --text-main: #FFFFFF;
+    --text-muted: #A0A0AB;
+    
+    --accent-primary: #00F0FF; /* Neon Cyan */
+    --accent-secondary: #8A2BE2; /* Electric Purple */
+    --accent-gradient: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+    
+    /* Layout & Spacing */
+    --container-max: 1200px;
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-round: 50%;
+    
+    /* Transitions & Animations */
+    --transition-fast: 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --transition-normal: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --transition-slow: 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    
+    /* Shadows */
+    --glow-primary: 0 0 20px rgba(0, 240, 255, 0.3);
+    --glow-secondary: 0 0 20px rgba(138, 43, 226, 0.3);
+}
+
+/* Base Reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text-main);
+}
+
+.text-gradient {
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+}
+
+a {
+    color: var(--text-main);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--accent-primary);
+}
+
+/* Layout Utilities */
+.container-modern {
+    width: 100%;
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+section {
+    padding: 100px 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* Glassmorphism & UI Components */
+.glass-panel {
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-lg);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.glass-panel:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Modern Button */
+.btn-modern {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 32px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    border-radius: 50px;
+    background: var(--accent-gradient);
+    color: #fff !important;
+    border: none;
+    cursor: pointer;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn-modern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--accent-secondary) 0%, var(--accent-primary) 100%);
+    z-index: -1;
+    transition: opacity var(--transition-normal);
+    opacity: 0;
+}
+
+.btn-modern:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--glow-primary);
+}
+
+.btn-modern:hover::before {
+    opacity: 1;
+}
+
+.btn-modern-outline {
+    background: transparent;
+    border: 1px solid var(--accent-primary);
+    color: var(--accent-primary) !important;
+}
+
+.btn-modern-outline::before {
+    background: rgba(0, 240, 255, 0.1);
+}
+
+.btn-modern-outline:hover {
+    box-shadow: var(--glow-primary);
+    color: #fff !important;
+}
+
+/* Scroll Animations */
+.reveal-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+.reveal-up.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* Grid Utilities */
+.grid-modern {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+/* Background Effects */
+.bg-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    z-index: -1;
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.bg-glow-cyan {
+    background-color: var(--accent-primary);
+}
+
+.bg-glow-purple {
+    background-color: var(--accent-secondary);
+}
+
+/* Navigation Modern */
+.nav-modern {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 0;
+    z-index: 1000;
+    background: transparent;
+    transition: background var(--transition-normal), padding var(--transition-normal);
+}
+
+.nav-modern.scrolled {
+    background: rgba(6, 6, 8, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.nav-modern .navbar-brand h1 {
+    font-size: 24px;
+    margin: 0;
+    letter-spacing: -0.5px;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-modern .nav-link {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-muted) !important;
+    margin: 0 15px;
+    position: relative;
+}
+
+.nav-modern .nav-item.active .nav-link,
+.nav-modern .nav-link:hover {
+    color: var(--text-main) !important;
+}
+
+.nav-modern .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--accent-primary);
+    transition: width var(--transition-fast), left var(--transition-fast);
+}
+
+.nav-modern .nav-item.active .nav-link::after,
+.nav-modern .nav-link:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    section {
+        padding: 60px 0;
+    }
+    .nav-modern {
+        background: var(--bg-main) !important;
+        padding: 15px 0;
+    }
+    .grid-modern {
+        grid-template-columns: 1fr;
+    }
+}
