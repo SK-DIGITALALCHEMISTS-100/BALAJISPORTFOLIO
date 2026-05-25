@@ -327,3 +327,261 @@ section {
         padding: 0 1.5rem;
     }
 }
+
+/* ==========================================================================
+   2D/3D Design Upgrade Rules
+   ========================================================================= */
+
+/* Custom Premium Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-main);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 4px;
+    border: 2px solid var(--bg-main);
+    transition: background var(--transition-fast);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-gradient);
+}
+
+/* Background Canvas Overlay */
+.design-bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2;
+    pointer-events: none;
+    transition: opacity 1s ease-in-out;
+}
+
+/* Dynamic Cards Glare & Preserves */
+.glass-panel {
+    position: relative;
+    overflow: hidden;
+}
+
+.glass-panel-spotlight {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: radial-gradient(800px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.06), transparent 40%);
+    z-index: 1;
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+}
+
+.glass-panel:hover .glass-panel-spotlight {
+    opacity: 1;
+}
+
+/* Mode-specific modifications */
+body.mode-3d .glass-panel {
+    border-color: rgba(138, 43, 226, 0.1);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+body.mode-3d .glass-panel:hover {
+    border-color: rgba(138, 43, 226, 0.4);
+    box-shadow: 0 15px 35px rgba(138, 43, 226, 0.15);
+}
+
+body.mode-3d .glass-panel > * {
+    transform: translateZ(20px);
+}
+
+body.mode-3d .bg-glow {
+    opacity: 0.15 !important;
+    transition: opacity 1s ease-in-out;
+}
+
+body.mode-2d .glass-panel {
+    border-color: rgba(0, 240, 255, 0.1);
+}
+
+body.mode-2d .glass-panel:hover {
+    border-color: rgba(0, 240, 255, 0.4);
+    box-shadow: 0 15px 35px rgba(0, 240, 255, 0.15);
+}
+
+/* Interactive Floating Switcher Widget */
+.design-switcher-widget {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: rgba(11, 11, 22, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 50px;
+    padding: 6px;
+    display: flex;
+    gap: 5px;
+    z-index: 9999;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.design-switcher-widget:hover {
+    border-color: rgba(0, 240, 255, 0.3);
+    box-shadow: 0 15px 35px rgba(0, 240, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.design-switcher-btn {
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all var(--transition-fast);
+}
+
+.design-switcher-btn i {
+    font-size: 0.95rem;
+}
+
+.design-switcher-btn.active {
+    color: #fff;
+    background: var(--accent-gradient);
+    box-shadow: var(--glow-primary);
+}
+
+.design-switcher-btn:hover:not(.active) {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Custom Cursor Styles */
+.cursor-glow-outer {
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: 2px solid var(--accent-primary);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 99999;
+    transition: width 0.2s, height 0.2s, border-color 0.2s, transform 0.08s ease-out;
+    opacity: 0;
+}
+
+.cursor-glow-inner {
+    width: 8px;
+    height: 8px;
+    background: var(--accent-secondary);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 99999;
+    transition: transform 0.02s ease-out;
+    opacity: 0;
+}
+
+body.mode-3d .cursor-glow-outer {
+    border-color: var(--accent-secondary);
+    box-shadow: 0 0 15px var(--accent-secondary);
+}
+
+body.mode-3d .cursor-glow-inner {
+    background: var(--accent-primary);
+    box-shadow: 0 0 10px var(--accent-primary);
+}
+
+.cursor-hover .cursor-glow-outer {
+    width: 60px;
+    height: 60px;
+    background: rgba(0, 240, 255, 0.05);
+    border-color: var(--accent-primary);
+}
+
+@media (pointer: coarse) {
+    .cursor-glow-outer, .cursor-glow-inner {
+        display: none !important;
+    }
+}
+
+/* Glitch Shutter Transition Overlay */
+.mode-transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    z-index: 999999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mode-transition-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+    animation: glitch-flash 0.8s ease-out forwards;
+}
+
+.mode-transition-scanner {
+    width: 100%;
+    height: 4px;
+    background: var(--accent-primary);
+    box-shadow: 0 0 20px var(--accent-primary);
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: scan-sweep 0.8s cubic-bezier(0.15, 0.85, 0.45, 1) forwards;
+}
+
+@keyframes scan-sweep {
+    0% { top: 0%; opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+}
+
+@keyframes glitch-flash {
+    0% { background: rgba(0, 240, 255, 0.15); filter: hue-rotate(0deg); }
+    10% { background: rgba(138, 43, 226, 0.25); }
+    20% { background: rgba(0, 0, 0, 0.95); }
+    30% { background: rgba(0, 240, 255, 0.15); }
+    40% { background: rgba(0, 0, 0, 0.98); }
+    50% { background: rgba(138, 43, 226, 0.15); filter: hue-rotate(180deg); }
+    100% { background: rgba(0, 0, 0, 0); }
+}
+
+/* Visual responsive adjustments for switcher widget */
+@media (max-width: 576px) {
+    .design-switcher-widget {
+        bottom: 20px;
+        right: 20px;
+        left: 20px;
+        justify-content: center;
+    }
+}
+
